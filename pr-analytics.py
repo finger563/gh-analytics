@@ -1,4 +1,4 @@
-from github import Github
+from github import Github, Auth
 import datetime
 from tqdm import tqdm
 from p_tqdm import p_map, t_map
@@ -21,7 +21,8 @@ datestr = args.since_date
 since_date = datetime.datetime.strptime(datestr, '%Y-%m-%d')
 
 # using an access token
-g = Github(token)
+auth = Auth.Token(token)
+g = Github(auth=auth)
 user = g.get_user()
 print(f"User associated with token: {user.login}")
 print("")
